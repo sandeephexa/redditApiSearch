@@ -1,0 +1,15 @@
+{
+  "name": "findout",
+  "version": "1.0.0",
+  "description": "redit article finder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sandeep kumar",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.5.1"
+  },
+  "devDependencies": {}
+}
