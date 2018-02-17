@@ -26,16 +26,24 @@ searchForm.addEventListener('submit', e =>{
     reddit.search(searchTerm, searchLimit, sortBy)
     .then(results => 
     {
+        console.log(results);
+        // set image
+       
+
         let output = '<div class="card-columns">';
         // loop through results
         results.forEach(post =>
         {
+            const image = post.preview ? post.preview.images[0].source.url : 'https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg';
             output+= `<div class="card" >
-  <img class="card-img-top" src="..." alt="Card image cap">
+  <img class="card-img-top" src="${image}" alt="Card image cap">
   <div class="card-block">
-    <h4 class="card-title">Card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h4 class="card-title">${post.title}</h4>
+    <p class="card-text">${truncateText(post.selftext,100)}</p>
+    <a href="${post.url}" target="_blank" class="btn btn-primary">Read more</a>
+    <hr>
+    <span class="badge badge-secondary">subreddit : ${post.subreddit}</span>
+    <span class="badge badge-dark">score : ${post.score}</span>
   </div>
 </div>`;
         });
@@ -71,3 +79,15 @@ function showMessage(message, className) {
   },3000)
 
 }
+
+function truncateText(text,limit){
+           const shortened = text.indexOf(' ',limit);
+           if(shortened == -1){
+               return text;
+           }
+           else{
+               return text.substring(0,shortened);
+           }
+
+}
+
